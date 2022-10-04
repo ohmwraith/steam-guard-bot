@@ -26,16 +26,14 @@
 Конфиг
 </h3>
 <hr>
-Пример настройки `config.json`:
+Пример настройки config.json:
 
 ```python
 {
     "TOKEN": "3213123:klnjifawNFDOnjfJGIRkfnmvdc", # Токен бота
     "TELEGRAM_OWNERS_ID": [56530123, 3123154], # ID аккаунта, с которого вы будете получать коды
     "SDA_PATH": "C:/SDA-1.0.10/Steam Desktop Authenticator.exe",
-    "ACCOUNT_LIST": [
-      "ohmwraith",
-      "Jessecar96"
-      ], # Список аккаунтов в SDA
+    "ACCOUNT_LIST": ["ohmwraith", "Jessecar96"], # Список аккаунтов в SDA
 }
 ```
+
