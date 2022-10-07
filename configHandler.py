@@ -4,6 +4,7 @@ import os
 
 class Config:
     def __init__(self, path='config.json'):
+        self.path = path
         self.content = {
             "TOKEN": "",
             "TELEGRAM_OWNERS_ID": 0,
@@ -12,14 +13,14 @@ class Config:
         }
         self.account_pointer = 0
         if not self.is_file_exists():
-            self.create_config()
+            self.create()
             print("Внесите данные в config.json и запустите приложение повторно")
             exit(0)
         else:
-            self.load_from_file(path)
-            self.check_content()
+            self.load(path)
+            self.check()
 
-    def load_from_file(self, path='config.json'):
+    def load(self, path='config.json'):
         with open(path) as file:
             config = file.read()
             try:
@@ -33,12 +34,11 @@ class Config:
             self.content['ACCOUNT_LIST'] = config_json['ACCOUNT_LIST']
             return config_json
 
-    def save_to_file(self, conf, path='config.json'):
+    def save(self, conf, path='config.json'):
         with open(path, 'w') as file:
             config = file.write(
                 str(conf).replace("'", '"').replace(",", ",\n   ").replace("{", "{\n    ").replace("}", "\n}"))
             return
-
 
     def get_accounts(self):
         return self.content['ACCOUNT_LIST']
@@ -66,7 +66,7 @@ class Config:
     def get_account_pointer(self):
         return self.account_pointer
 
-    def check_content(self):
+    def check(self):
         if self.content['TOKEN'] == "":
             print("TOKEN: Необходимо указать токен бота, выданный при создании @BotFather")
             exit(0)
@@ -79,11 +79,11 @@ class Config:
         if not os.path.exists(self.content['SDA_PATH']):
             print("SDA_PATH: Необходимо указать правильный путь до Steam Desktop Authenticator.exe")
 
-    def create_config(self):
-        with open('config.json', 'w') as file:
+    def create(self):
+        with open(self.path, 'w') as file:
             file.write(json.dumps(self.content))
 
 
 if __name__ == "__main__":
     conf = Config()
-    print(conf.load_config())
+    print(conf.load())
