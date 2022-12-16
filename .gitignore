@@ -1,5 +1,7 @@
 .idea/
 __pycache__/
 config.json
+config.ini
 output.png
+db.sql
 venv/
