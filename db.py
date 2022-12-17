@@ -116,17 +116,13 @@ class licenseManageDB():
     def get_all(conn):
         cursor = conn.cursor()
         cursor.execute(f"SELECT * FROM licenses")
-        try:
-            l_list = cursor.fetchall()
-        except IndexError:
-            return False
-        finally:
-            cursor.close()
+        l_list = cursor.fetchall()
+        cursor.close()
         return l_list
 
     def clear_all(conn):
         cursor = conn.cursor()
-        cursor.execute(f"TRUNCATE TABLE licenses CASCADE")
+        cursor.execute("TRUNCATE TABLE licenses CASCADE")
         rowcount = cursor.rowcount
         cursor.close()
         return rowcount
@@ -178,7 +174,7 @@ if __name__ == '__main__':
             print("Соединение с базой данных MySQL установлено")
         else:
             print("Соединение с базой данных MySQL не установлено")
-
+            
         # Do something ...
 
         
